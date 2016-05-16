@@ -1,7 +1,9 @@
 <ion-content #maincontent>
     <div class="popular-container">
         <ion-scroll #popularscroller class="item" scrollX="true" scrollY="false" style="height: {{scrollHeight}}px;">
-            <div class="horizontal-scroller-content">
+            <div class="horizontal-scroller-content" style="height: {{scrollHeight}}px;">
+                <list-refresher></list-refresher>
+
                 <div *ngFor="#popularMovie of popularMovies | async">
                     <img [attr.src]="getPosterPath(popularMovie.poster_path)" [attr.height]="getImageHeight()" (click)="onMovieClick($event, popularMovie)" />
                 </div>

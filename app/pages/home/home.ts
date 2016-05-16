@@ -2,6 +2,8 @@ import { ViewChild } from "angular2/core";
 import { Page, NavController, Content, Scroll } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
+import { ListRefresher } from './list-refresher';
+
 import { TmdbConfigService } from '../../services/http/tmdb-config.service';
 import { TmdbMoviesService } from '../../services/http/tmdb-movies.service';
 import { InfiniteScollerService } from '../../services/infinite-scroller.service';
@@ -18,6 +20,7 @@ interface PosterPercentageItem {
 
 @Page({
     templateUrl: 'build/pages/home/home.html',
+    directives: [ListRefresher],
     providers: [TmdbConfigService, TmdbMoviesService, InfiniteScollerService],
     queries: {
         popularscroller: new ViewChild('popularscroller'),
@@ -34,6 +37,7 @@ export class HomePage {
     scrollHeight: number;
     imageHeight: number;
     posterWidth: string;
+
     constructor(private nav: NavController,
         private tmdbConfigService: TmdbConfigService,
         private tmdbMovieService: TmdbMoviesService,
@@ -50,9 +54,6 @@ export class HomePage {
 
         this.tmdbConfigService.load();
         this.tmdbMovieService.loadPopular();
-    }
-
-    ngAfterContentInit() {
     }
 
     ngAfterViewInit() {
@@ -79,13 +80,8 @@ export class HomePage {
 
             var closestPercentage = findClosest(sizes.map(x => x.percentage), 40);
             this.posterWidth = sizes.find(x => x.percentage == closestPercentage).posterSize;
-            this.imageHeight = screenHeight * 0.4;
-            this.scrollHeight = this.imageHeight + 5;
+            this.imageHeight = this.scrollHeight = screenHeight * 0.4;
         }, 0);
-    }
-
-    onMovieClick(event: MouseEvent, movie: TmdbBaseMovieResponse) {
-
     }
 
     protected getPosterPath(path: string) {

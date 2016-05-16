@@ -8487,7 +8487,7 @@ body {
   font-size: 1.4rem;
   background-color: #fff; }
 
-.item ::-webkit-scrollbar,
+.item::-webkit-scrollbar,
 .item *::-webkit-scrollbar {
   display: none; }
 
@@ -8496,3 +8496,6 @@ ion-scroll.item .horizontal-scroller-content {
 
 ion-scroll.item .horizontal-scroller-content div {
   display: inline-block; }
+
+ion-scroll.scroll-y scroll-content {
+  overflow-y: hidden; }

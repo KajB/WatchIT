@@ -18,7 +18,7 @@ export class InfiniteScollerService {
     }
 
     register(name: string, ionScroller: Scroll, callback: () => void, limitPercentage: number = 0.92) {
-        let scroller = this.scrollInformation.find(x => x.name == name)
+        let scroller = this.scrollInformation.find(x => x.name == name);
         if (scroller == null) {
              scroller = { name: name, scroller: ionScroller, limitPercentage: limitPercentage };
              this.scrollInformation.push(scroller);

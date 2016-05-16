@@ -6,6 +6,12 @@ import { HomePage } from './pages/home/home';
 import { TmdbApiService } from './services/tmdb-api.service';
 import { InfiniteScollerService } from './services/infinite-scroller.service';
 
+const directions: string[] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+interface Direction {
+    degrees: number,
+    direction: string
+}
+
 @App({
     template: '<ion-nav [root]="rootPage"></ion-nav>',
     providers: [TmdbApiService, InfiniteScollerService],
@@ -58,4 +64,12 @@ export function findClosest(arr: number[], closestTo: number): number {
         }
     }
     return curr;
+}
+
+export function calcDirection(degrees: number): Direction {
+    let val = Math.floor((degrees / 22.5) + 0.5);
+    return {
+        degrees,
+        direction: directions[(val % directions.length)]
+    };
 }

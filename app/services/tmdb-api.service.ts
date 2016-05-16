@@ -48,9 +48,8 @@ export class TmdbApiService {
                 if (subscribeOnComplete != null) {
                     subscribeOnComplete();
                 }
-            });
+            }); 
 
-        let iets = Observable
         this.register({
             name: name,
             subscription: subscription

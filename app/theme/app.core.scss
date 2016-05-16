@@ -1,20 +1,23 @@
 // http://ionicframework.com/docs/v2/theming/
-
 // App Shared Imports
 // --------------------------------------------------
 // These are the imports which make up the design of this app.
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-.item ::-webkit-scrollbar,
+.item::-webkit-scrollbar,
 .item *::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 ion-scroll.item .horizontal-scroller-content {
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
 ion-scroll.item .horizontal-scroller-content div {
-    display:inline-block;
+    display: inline-block;
+}
+
+ion-scroll.scroll-y scroll-content {
+    overflow-y: hidden;
 }
